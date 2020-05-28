@@ -1,0 +1,81 @@
+'''
+Placing a Fibonacci sequence (having M x N elements) in a M x N matrix
+
+'''  
+
+def genfibon(n):
+    """
+    generate  fibonnaci sequence up to n
+    """
+    a = 1
+    b = 1
+    for i in range(n):
+        yield a
+        a, b = b, a+b
+
+def printMatrix(Matrix, nrLinii, nrCol) :  
+    '''
+    printing the matrix in an acceptable design and format
+    
+    '''        
+    for j in range(nrLinii) :  
+        for i in range(nrCol) :  
+            print("%15.0i" %Matrix[i][j], end = " ") 
+  
+        print() 
+
+a = int(input("Number of lines: "))
+b = int(input("Number of columns: ")) 
+nsfib = a * b
+
+print('Fibonacci sequence up to %1.0f-th number' %nsfib)    
+
+print(list(genfibon(nsfib)))
+matrix = []
+for j in range(b):
+    matrix = matrix + [j]
+    matrix[j] = []
+    for i in range(a):
+        matrix[j] = matrix[j] + [list(genfibon(nsfib))[i+j+1+i*(b-1)-1]]
+
+print("\nThe matrix is:")
+
+printMatrix(matrix, a, b)
+
+
+OUTPUTS
+
+Number of lines: 5
+Number of columns: 3
+Fibonacci sequence up to 15-th number
+[1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610]
+
+The matrix is:
+              1               1               2 
+              3               5               8 
+             13              21              34 
+             55              89             144 
+            233             377             610 
+            
+            
+Number of lines: 3
+Number of columns: 6
+Fibonacci sequence up to 18-th number
+[1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584]
+
+The matrix is:
+              1               1               2               3               5               8 
+             13              21              34              55              89             144 
+            233             377             610             987            1597            2584 
+            
+            
+Number of lines: 4
+Number of columns: 4
+Fibonacci sequence up to 16-th number
+[1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]
+
+The matrix is:
+              1               1               2               3 
+              5               8              13              21 
+             34              55              89             144 
+            233             377             610             987
